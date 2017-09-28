@@ -8,7 +8,8 @@ namespace ToDoApplication
 {
     class Task
     {
-        public string Description;
+        public string Description = String.Empty;
+        public bool IsCompleted = true;
 
         public Task(string item)
         {
@@ -21,7 +22,12 @@ namespace ToDoApplication
 
         public override string ToString()
         {
-            return Description;
+            //return "Hello";
+            //return $"{IsCompleted}";
+            //return $"{Description}";
+            //return $"[] {Description}";
+            return $"[{(IsCompleted ? "x" : " ")}] {Description}";
+            // {(IsCompleted ? "x" : " ")}
         }
     }
 }

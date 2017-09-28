@@ -78,6 +78,8 @@ namespace ToDoApplication
             else if (command.Equals($"--{Services.AvailableOptions[3]}") ||
                 command.Equals($"-{services.ShortArgs[Services.AvailableOptions[3]]}"))
             {
+                // Complete
+
                 Console.WriteLine("Complete");
                 //tasks.SaveToFile();
             }
