@@ -47,6 +47,7 @@ namespace ToDoApplication
                         Console.WriteLine("Unable to add: no task provided");
                     }
                 }
+                tasks.SaveToFile();
             }
             else if (command.Equals($"--{Services.AvailableOptions[2]}") ||
                 command.Equals($"-{services.ShortArgs[Services.AvailableOptions[2]]}"))
@@ -72,13 +73,20 @@ namespace ToDoApplication
                 {
                     Console.WriteLine("Unable to remove: index is not a number");
                 }
+                tasks.SaveToFile();
             }
             else if (command.Equals($"--{Services.AvailableOptions[3]}") ||
                 command.Equals($"-{services.ShortArgs[Services.AvailableOptions[3]]}"))
             {
                 Console.WriteLine("Complete");
+                //tasks.SaveToFile();
             }
-            tasks.SaveToFile();
+            else
+            {
+                Console.WriteLine("Unsupported argument");
+                HelpMessage helpMessage = new HelpMessage(services);
+                Console.WriteLine(helpMessage.ToString());
+            }
         }
     }
 }

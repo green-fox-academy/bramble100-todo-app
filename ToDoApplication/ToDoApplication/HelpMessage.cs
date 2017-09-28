@@ -22,13 +22,12 @@ namespace ToDoApplication
         {
             StringBuilder helpMessage = new StringBuilder();
             helpMessage.AppendLine(HelpMessageHeader);
-            //foreach (int item in Enum.GetValues(typeof(Services.AvailableServices)))
             for (int i = 0; i < Services.AvailableOptions.Length; i++)
             {
                 string item = Services.AvailableOptions[i];
                 helpMessage.AppendLine(
-                    $" -{services.ShortArgs[item]} "+
-                    $"--{item.PadRight(9)} "+
+                    $" -{services.ShortArgs[item]}  "+
+                    $"--{item.PadRight(11)}"+
                     $"{services.Descriptions[item]}");
             }
             return helpMessage.ToString();

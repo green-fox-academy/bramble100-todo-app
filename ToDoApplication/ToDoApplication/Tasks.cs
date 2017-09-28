@@ -24,6 +24,20 @@ namespace ToDoApplication
             }
         }
 
+        internal void Add(string item)
+        {
+            if (String.IsNullOrEmpty(item))
+            {
+                throw new ArgumentNullException("Unable to add: no task provided");
+            }
+            Add(new Task(item));
+        }
+
+        internal void Remove(int number)
+        {
+            RemoveAt(number - 1);
+        }
+
         public void SaveToFile()
         {
             using (StreamWriter writer = new StreamWriter(path))
@@ -45,21 +59,6 @@ namespace ToDoApplication
                 stringBuilder.AppendLine($"{i + 1} - {this[i].ToString()}");
             }
             return stringBuilder.ToString();
-        }
-
-        internal void Add(string item)
-        {
-            if (String.IsNullOrEmpty(item))
-            {
-                throw new ArgumentNullException("Unable to add: no task provided");
-            }
-            Add(new Task(item));
-        }
-
-        internal void Remove(int number)
-        {
-            RemoveAt(number - 1);
-            SaveToFile();
         }
     }
 }
