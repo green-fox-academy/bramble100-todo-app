@@ -17,6 +17,26 @@ namespace ToDoApplication
                 HelpMessage helpMessage = new HelpMessage(services);
                 Console.WriteLine(helpMessage.ToString());
             }
+            else if (args[0].Equals($"--{Services.AvailableOptions[0]}") ||
+                args[0].Equals($"-{services.ShortArgs[Services.AvailableOptions[0]]}"))
+            {
+                Console.WriteLine("List");
+            }
+            else if (args[0].Equals($"--{Services.AvailableOptions[1]}") ||
+                args[0].Equals($"-{services.ShortArgs[Services.AvailableOptions[1]]}"))
+            {
+                Console.WriteLine("Add");
+            }
+            else if (args[0].Equals($"--{Services.AvailableOptions[2]}") ||
+                args[0].Equals($"-{services.ShortArgs[Services.AvailableOptions[2]]}"))
+            {
+                Console.WriteLine("Remove");
+            }
+            else if (args[0].Equals($"--{Services.AvailableOptions[3]}") ||
+                args[0].Equals($"-{services.ShortArgs[Services.AvailableOptions[3]]}"))
+            {
+                Console.WriteLine("Complete");
+            }
         }
     }
 }
