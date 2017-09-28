@@ -14,11 +14,9 @@ namespace ToDoApplication
 
             if (args.Length == 0)
             {
-                HelpMessage helpMessage = new HelpMessage();
+                HelpMessage helpMessage = new HelpMessage(services);
                 Console.WriteLine(helpMessage.ToString());
             }
-
-            Console.ReadKey();
         }
     }
 }
