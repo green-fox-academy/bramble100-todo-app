@@ -10,6 +10,15 @@ namespace ToDoApplication
     {
         static void Main(string[] args)
         {
+            Services services = new Services();
+
+            if (args.Length == 0)
+            {
+                HelpMessage helpMessage = new HelpMessage();
+                Console.WriteLine(helpMessage.ToString());
+            }
+
+            Console.ReadKey();
         }
     }
 }
