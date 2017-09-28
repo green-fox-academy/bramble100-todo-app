@@ -54,6 +54,11 @@ namespace ToDoApplication
                 throw new ArgumentNullException("Unable to add: no task provided");
             }
             Add(new Task(item));
+        }
+
+        internal void Remove(int number)
+        {
+            RemoveAt(number - 1);
             SaveToFile();
         }
     }

@@ -28,14 +28,17 @@ namespace ToDoApplication
             {
                 // List
                 Console.WriteLine(tasks.ToString());
+                return;
             }
-            else if (command.Equals($"--{Services.AvailableOptions[1]}") ||
+
+            if (command.Equals($"--{Services.AvailableOptions[1]}") ||
                 command.Equals($"-{services.ShortArgs[Services.AvailableOptions[1]]}"))
             {
                 // Add
                 try
                 {
                     tasks.Add(args[1]);
+                    Console.WriteLine($"Task added ({args[1]})");
                 }
                 catch (Exception ex)
                 {
@@ -48,13 +51,34 @@ namespace ToDoApplication
             else if (command.Equals($"--{Services.AvailableOptions[2]}") ||
                 command.Equals($"-{services.ShortArgs[Services.AvailableOptions[2]]}"))
             {
-                Console.WriteLine("Remove");
+                // Remove
+                try
+                {
+                    int number = Convert.ToInt32(args[1]);
+                    try
+                    {
+                        tasks.RemoveAt(number - 1);
+                    }
+                    catch (ArgumentOutOfRangeException)
+                    {
+                        Console.WriteLine("Unable to remove: index is out of bound");
+                    }
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    Console.WriteLine("Unable to remove: no index provided");
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Unable to remove: index is not a number");
+                }
             }
             else if (command.Equals($"--{Services.AvailableOptions[3]}") ||
                 command.Equals($"-{services.ShortArgs[Services.AvailableOptions[3]]}"))
             {
                 Console.WriteLine("Complete");
             }
+            tasks.SaveToFile();
         }
     }
 }
