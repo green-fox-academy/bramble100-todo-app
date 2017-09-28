@@ -16,11 +16,15 @@ namespace ToDoApplication
             {
                 HelpMessage helpMessage = new HelpMessage(services);
                 Console.WriteLine(helpMessage.ToString());
+                return;
             }
-            else if (args[0].Equals($"--{Services.AvailableOptions[0]}") ||
+
+            Tasks tasks = new Tasks();
+
+            if (args[0].Equals($"--{Services.AvailableOptions[0]}") ||
                 args[0].Equals($"-{services.ShortArgs[Services.AvailableOptions[0]]}"))
             {
-                Console.WriteLine("List");
+                Console.WriteLine(tasks.ToString());
             }
             else if (args[0].Equals($"--{Services.AvailableOptions[1]}") ||
                 args[0].Equals($"-{services.ShortArgs[Services.AvailableOptions[1]]}"))

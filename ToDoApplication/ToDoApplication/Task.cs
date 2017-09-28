@@ -8,7 +8,16 @@ namespace ToDoApplication
 {
     class Task
     {
-        public int ID;
         public string Description;
+
+        public Task(string item)
+        {
+            Description = item;
+        }
+
+        public override string ToString()
+        {
+            return Description;
+        }
     }
 }
