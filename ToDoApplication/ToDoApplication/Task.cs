@@ -12,6 +12,10 @@ namespace ToDoApplication
 
         public Task(string item)
         {
+            if(String.IsNullOrEmpty(item))
+            {
+                throw new ArgumentNullException("Unable to add: no task provided");
+            }
             Description = item;
         }
 

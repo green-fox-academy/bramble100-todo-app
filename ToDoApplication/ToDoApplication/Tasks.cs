@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ToDoApplication
 {
-    class Tasks : Dictionary<int, Task>
+    class Tasks : List<Task>
     {
         private static string path = @"./todo-list.txt";
         //private bool SourceFileExists;
@@ -17,7 +17,10 @@ namespace ToDoApplication
             string[] content = File.ReadAllLines(path);
             foreach (string item in content)
             {
-                Add(Count, new Task(item));
+                if (!String.IsNullOrEmpty(item))
+                {
+                    Add(new Task(item));
+                }
             }
         }
 
@@ -25,7 +28,7 @@ namespace ToDoApplication
         {
             using (StreamWriter writer = new StreamWriter(path))
             {
-                writer.WriteLine("Hello Alpaga!");
+                ForEach(item => writer.WriteLine(item));
             }
         }
 
@@ -42,6 +45,16 @@ namespace ToDoApplication
                 stringBuilder.AppendLine($"{i + 1} - {this[i].ToString()}");
             }
             return stringBuilder.ToString();
+        }
+
+        internal void Add(string item)
+        {
+            if (String.IsNullOrEmpty(item))
+            {
+                throw new ArgumentNullException("Unable to add: no task provided");
+            }
+            Add(new Task(item));
+            SaveToFile();
         }
     }
 }

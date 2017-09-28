@@ -19,25 +19,39 @@ namespace ToDoApplication
                 return;
             }
 
+            string command = args[0];
+
             Tasks tasks = new Tasks();
 
-            if (args[0].Equals($"--{Services.AvailableOptions[0]}") ||
-                args[0].Equals($"-{services.ShortArgs[Services.AvailableOptions[0]]}"))
+            if (command.Equals($"--{Services.AvailableOptions[0]}") ||
+                command.Equals($"-{services.ShortArgs[Services.AvailableOptions[0]]}"))
             {
+                // List
                 Console.WriteLine(tasks.ToString());
             }
-            else if (args[0].Equals($"--{Services.AvailableOptions[1]}") ||
-                args[0].Equals($"-{services.ShortArgs[Services.AvailableOptions[1]]}"))
+            else if (command.Equals($"--{Services.AvailableOptions[1]}") ||
+                command.Equals($"-{services.ShortArgs[Services.AvailableOptions[1]]}"))
             {
-                Console.WriteLine("Add");
+                // Add
+                try
+                {
+                    tasks.Add(args[1]);
+                }
+                catch (Exception ex)
+                {
+                    if (ex is ArgumentNullException || ex is IndexOutOfRangeException)
+                    {
+                        Console.WriteLine("Unable to add: no task provided");
+                    }
+                }
             }
-            else if (args[0].Equals($"--{Services.AvailableOptions[2]}") ||
-                args[0].Equals($"-{services.ShortArgs[Services.AvailableOptions[2]]}"))
+            else if (command.Equals($"--{Services.AvailableOptions[2]}") ||
+                command.Equals($"-{services.ShortArgs[Services.AvailableOptions[2]]}"))
             {
                 Console.WriteLine("Remove");
             }
-            else if (args[0].Equals($"--{Services.AvailableOptions[3]}") ||
-                args[0].Equals($"-{services.ShortArgs[Services.AvailableOptions[3]]}"))
+            else if (command.Equals($"--{Services.AvailableOptions[3]}") ||
+                command.Equals($"-{services.ShortArgs[Services.AvailableOptions[3]]}"))
             {
                 Console.WriteLine("Complete");
             }
