@@ -30,6 +30,6 @@ namespace ToDoApplication
 
         public override string ToString() => $"[{(IsCompleted ? "x" : " ")}] {Description}";
 
-        internal void Complete() => IsCompleted = true;
+        public void Complete() => IsCompleted = true;
     }
 }
