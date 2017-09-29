@@ -7,21 +7,21 @@ using System.Threading.Tasks;
 
 namespace ToDoApplication
 {
-    class Tasks : List<Task>
+    public class Tasks : List<Task>
     {
         private static string path = @"./todo-list.txt";
 
         public Tasks()
         {
-            string[] content = File.ReadAllLines(path);
-            foreach (string row in content)
+            try
             {
-                if (!String.IsNullOrEmpty(row))
-                {
-                    Add(new Task(row.Split(';')));
-
-                }
+                File.ReadAllLines(path).ToList().ForEach(row => Add(new Task(row.Split(';'))));
             }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("File not found");
+            }
+            
         }
 
         internal void Add(string item)
