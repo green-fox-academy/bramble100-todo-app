@@ -13,21 +13,23 @@ namespace ToDoApplication
 
         public Task(string item)
         {
-            if(String.IsNullOrEmpty(item))
+            if (String.IsNullOrEmpty(item))
             {
                 throw new ArgumentNullException("Unable to add: no task provided");
             }
             Description = item;
         }
 
-        public override string ToString()
+        public Task(string[] rowFromFile)
         {
-            //return "Hello";
-            //return $"{IsCompleted}";
-            //return $"{Description}";
-            //return $"[] {Description}";
-            return $"[{(IsCompleted ? "x" : " ")}] {Description}";
-            // {(IsCompleted ? "x" : " ")}
+            IsCompleted = Convert.ToBoolean(rowFromFile[0].ToLower());            
+            Description = rowFromFile[1];
         }
+
+        public string StringToBeSavedToFile() => $"{IsCompleted};{Description}";
+
+        public override string ToString() => $"[{(IsCompleted ? "x" : " ")}] {Description}";
+
+        internal void Complete() => IsCompleted = true;
     }
 }

@@ -79,6 +79,27 @@ namespace ToDoApplication
                 command.Equals($"-{services.ShortArgs[Services.AvailableOptions[3]]}"))
             {
                 // Complete
+                try
+                {
+                    int number = Convert.ToInt32(args[1]);
+                    try
+                    {
+                        tasks.CompleteAt(number - 1);
+                    }
+                    catch (ArgumentOutOfRangeException)
+                    {
+                        Console.WriteLine("Unable to check: index is out of bound");
+                    }
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    Console.WriteLine("Unable to check: no index provided");
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Unable to check: index is not a number");
+                }
+                tasks.SaveToFile();
 
                 Console.WriteLine("Complete");
                 //tasks.SaveToFile();

@@ -10,16 +10,16 @@ namespace ToDoApplication
     class Tasks : List<Task>
     {
         private static string path = @"./todo-list.txt";
-        //private bool SourceFileExists;
 
         public Tasks()
         {
             string[] content = File.ReadAllLines(path);
-            foreach (string item in content)
+            foreach (string row in content)
             {
-                if (!String.IsNullOrEmpty(item))
+                if (!String.IsNullOrEmpty(row))
                 {
-                    Add(new Task(item));
+                    Add(new Task(row.Split(';')));
+
                 }
             }
         }
@@ -33,16 +33,15 @@ namespace ToDoApplication
             Add(new Task(item));
         }
 
-        internal void Remove(int number)
-        {
-            RemoveAt(number - 1);
-        }
+        internal void CompleteAt(int number) => this[number].Complete();
+
+        internal void Remove(int number) => RemoveAt(number - 1);
 
         public void SaveToFile()
         {
             using (StreamWriter writer = new StreamWriter(path))
             {
-                ForEach(item => writer.WriteLine(item));
+                ForEach(item => writer.WriteLine(item.StringToBeSavedToFile()));
             }
         }
 
