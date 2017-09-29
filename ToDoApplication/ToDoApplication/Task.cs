@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ToDoApplication
 {
-    class Task
+    public class Task
     {
         public string Description = String.Empty;
-        public bool IsCompleted = true;
+        public bool IsCompleted = false;
 
         public Task(string item)
         {
